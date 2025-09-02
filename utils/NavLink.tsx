@@ -1,6 +1,10 @@
+"use client"
+
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
+
 
 type NavLinkProps = {
   href: string;
@@ -16,6 +20,9 @@ const underlineVariants = {
 };
 
 const NavLink = ({ href, className = "", children }: NavLinkProps) => {
+
+  const pathname = usePathname();
+
   return (
     <Link href={href} className={`${navLinkClass} ${className}`}>
       <motion.span
@@ -26,7 +33,7 @@ const NavLink = ({ href, className = "", children }: NavLinkProps) => {
       >
         {children}
         <motion.span
-          className="absolute left-0 -bottom-0.5 h-0.5 bg-red-500"
+          className="absolute left-0 -bottom-0.5 h-0.5 bg-orange-500"
           variants={underlineVariants}
           transition={{ duration: 0.3 }}
           style={{ display: "block" }}

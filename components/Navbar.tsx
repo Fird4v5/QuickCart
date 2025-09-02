@@ -1,18 +1,22 @@
 "use client"; 
 import Image from 'next/image';
-import NavLink from '@/NavLink';
-import { assets } from '@/assets';
-import { useAppContext } from '@/AppContext';
+import NavLink from '@utils/NavLink';
+import { assets } from '@assets/assets';
+import { useAppContext } from '@context/AppContext';
+import { useParams } from 'next/navigation';
 
-
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/shop", label: "Shop" },
-  { href: "/", label: "About Us" },
-  { href: "/", label: "Contact" },
-];
 
 const Navbar = () => {
+
+  const id = useParams(); 
+
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: `/shop`, label: "Shop" },
+    { href: "", label: "About Us" },
+    { href: "", label: "Contact" },
+  ];
 
   const { isSeller, router } = useAppContext();
 

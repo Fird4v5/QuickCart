@@ -1,8 +1,8 @@
 "use client"
-import { assets } from "@/assets";
+import { assets } from "@assets/assets";
 import Image from "next/image";
-import { useAppContext } from "@/AppContext";
-import { Product } from "@/types";
+import { useAppContext } from "@context/AppContext";
+import { Product } from "@context/types";
 
 const ProductCard = ({ product }: { product: Product }) => {
 

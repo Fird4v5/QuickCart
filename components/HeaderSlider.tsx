@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { assets } from "@/assets";
+import { assets } from "@assets/assets";
 import Image from "next/image";
-import { sliderData } from "@/slider-data";
+import { sliderData } from "@constants/slider-data";
 
 const HeaderSlider = () => {
 

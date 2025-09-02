@@ -1,8 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { createContext, useState, ReactNode, useEffect, useContext } from "react";
-import { productsData } from "@/products-data";
-import { AppContextType, Product } from "@/types";
+import { productsData } from "@constants/products-data";
+import { AppContextType, Product } from "./types";
 
 
 

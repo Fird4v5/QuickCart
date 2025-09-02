@@ -1,10 +1,11 @@
-import HeaderSlider from "@/HeaderSlider";
-import HomeProducts from "@/HomeProducts"; 
-import Banner from "@/Banner";
-import FeaturedProduct from "@/FeaturedProduct";
-import Navbar from "@/Navbar";
-import Footer from "@/Footer";
-import NewsLetter from "@/NewsLetter";
+import Banner from "@components/Banner"
+import FeaturedProduct from "@components/FeaturedProduct"
+import HeaderSlider from "@components/HeaderSlider"
+import HomeProducts from "@components/HomeProducts"
+import Navbar from "@components/Navbar"
+import NewsLetter from "@components/NewsLetter"
+import Footer from "@components/Footer"
+
 
 
 const Home = () => {

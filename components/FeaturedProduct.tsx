@@ -1,7 +1,7 @@
 import React from "react";
-import { assets } from "@/assets";
+import { assets } from "@assets/assets";
 import Image from "next/image";
-import { FeaturedProducts } from "@/featured-products";
+import { FeaturedProducts } from "@constants/featured-products";
 
 const FeaturedProduct = () => {
   return (
@@ -24,7 +24,7 @@ const FeaturedProduct = () => {
               <p className="text-sm lg:text-base leading-5 max-w-60">
                 {description}
               </p>
-              <button className="flex items-center gap-1.5 bg-orange-600 px-4 py-2 rounded w-3/6">
+              <button className="flex items-center gap-1.5 bg-orange-600 px-4 py-2 rounded w-3/6 cursor-pointer">
                 Buy now <Image className="h-3 w-3" src={assets.redirect_icon} alt="Redirect Icon" />
               </button>
             </div>

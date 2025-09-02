@@ -1,7 +1,7 @@
 "use client"
 
-import { useAppContext } from "@/AppContext";
-import ProductCard from "@/ProductCard";
+import { useAppContext } from "@context/AppContext";
+import ProductCard from "./ProductCard";
 
 const HomeProducts = () => {
 

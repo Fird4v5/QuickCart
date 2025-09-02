@@ -1,6 +1,6 @@
 "use client"
 
-import { assets } from "@/assets";
+import { assets } from "@assets/assets";
 import Image from "next/image";
 
 const Footer = () => {

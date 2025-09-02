@@ -1,4 +1,4 @@
-import { assets } from "@/assets";
+import { assets } from "@assets/assets";
 
 export const FeaturedProducts = [
   {
