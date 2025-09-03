@@ -1,16 +1,36 @@
 'use client'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { assets } from "@assets/assets";
 import Image from "next/image";
+import Footer from "@components/seller/Footer";
 
 const AddProduct = () => {
 
   const [files, setFiles] = useState<File[]>([]);
+  const [previews, setPreviews] = useState<string[]>([]);
+
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('Earphone');
   const [price, setPrice] = useState('');
   const [offerPrice, setOfferPrice] = useState('');
+
+  const handleFilesChange = (file: File, index: number) => {
+    const updatedFiles = [...files]; 
+    updatedFiles[index] = file; 
+    setFiles(updatedFiles);
+
+    const newPreviews = [...previews]; 
+    newPreviews[index] = URL.createObjectURL(file);
+    setPreviews(newPreviews);
+  }
+
+  useEffect(() => {
+    return () => {
+      previews.forEach((url) => url && URL.revokeObjectURL(url));
+    }
+  }, [previews]);
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,7 +39,10 @@ const AddProduct = () => {
 
   return (
     <div className="flex-1 min-h-screen flex flex-col justify-between">
+
       <form onSubmit={handleSubmit} className="md:p-10 p-4 space-y-5 max-w-lg">
+
+        {/* PRODUCT IMAGE  */}
         <div>
           <p className="text-base font-medium">Product Image</p>
           <div className="flex flex-wrap items-center gap-3 mt-2">
@@ -28,23 +51,22 @@ const AddProduct = () => {
               <label key={index} htmlFor={`image${index}`}>
                 <input onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   if (!e.target.files) return;
-                  const updatedFiles = [...files];
-                  updatedFiles[index] = e.target.files[0];
-                  setFiles(updatedFiles);
+                  handleFilesChange(e.target.files[0], index);
                 }} type="file" id={`image${index}`} hidden />
                 <Image
                   key={index}
                   className="max-w-24 cursor-pointer"
-                  src={files[index] ? URL.createObjectURL(files[index]) : assets.upload_area}
+                  src={previews[index] || assets.upload_area}
                   alt={`Product Image ${index + 1}`}
                   width={100}
                   height={100}
                 />
               </label>
             ))}
-
           </div>
         </div>
+
+        {/* PRODUCT NAME */}
         <div className="flex flex-col gap-1 max-w-md">
           <label className="text-base font-medium" htmlFor="product-name">
             Product Name
@@ -59,6 +81,8 @@ const AddProduct = () => {
             required
           />
         </div>
+
+        {/* PRODUCT DESCRIPTION */}
         <div className="flex flex-col gap-1 max-w-md">
           <label
             className="text-base font-medium"
@@ -76,6 +100,8 @@ const AddProduct = () => {
             required
           ></textarea>
         </div>
+
+        {/* PRODUCT CATEGORY */}
         <div className="flex items-center gap-5 flex-wrap">
           <div className="flex flex-col gap-1 w-32">
             <label className="text-base font-medium" htmlFor="category">
@@ -96,6 +122,8 @@ const AddProduct = () => {
               <option value="Accessories">Accessories</option>
             </select>
           </div>
+
+          {/* PRODUCT PRICE */}
           <div className="flex flex-col gap-1 w-32">
             <label className="text-base font-medium" htmlFor="product-price">
               Product Price
@@ -110,6 +138,8 @@ const AddProduct = () => {
               required
             />
           </div>
+
+          {/* OFFER PRICE */}
           <div className="flex flex-col gap-1 w-32">
             <label className="text-base font-medium" htmlFor="offer-price">
               Offer Price
@@ -125,11 +155,11 @@ const AddProduct = () => {
             />
           </div>
         </div>
-        <button type="submit" className="px-8 py-2.5 bg-orange-600 text-white font-medium rounded">
+        <button type="submit" className="px-8 py-2.5 bg-orange-600 text-white font-medium rounded cursor-pointer">
           ADD
         </button>
       </form>
-      {/* <Footer /> */}
+       <Footer />
     </div>
   );
 };

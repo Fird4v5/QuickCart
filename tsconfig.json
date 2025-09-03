@@ -25,7 +25,8 @@
       "@context/*": ["./context/*"],
       "@utils/*": ["./utils/*"],
       "@assets/*": ["./assets/*"],
-      "@constants/*": ["./constants/*"], 
+      "@constants/*": ["./constants/*"],
+      "types/*": ["./types/*"]
 
     }
   },

@@ -9,7 +9,7 @@ import { useParams } from "next/navigation";
 import Loading from "@components/Loading";
 import { useAppContext } from "@context/AppContext";
 import React from "react";
-import type { Product } from "@context/types";
+import type { Product } from "types/types";
 
 const Product = () => {
 

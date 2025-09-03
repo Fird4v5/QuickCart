@@ -2,7 +2,7 @@
 import { assets } from "@assets/assets";
 import Image from "next/image";
 import { useAppContext } from "@context/AppContext";
-import { Product } from "@context/types";
+import { Product } from "types/types";
 
 const ProductCard = ({ product }: { product: Product }) => {
 
