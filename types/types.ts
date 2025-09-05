@@ -1,6 +1,8 @@
 import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import type { UserResource } from "@clerk/types"
 
 export type AppContextType = {
+  user: UserResource | null | undefined; 
   currency: string | undefined;
   router: AppRouterInstance;
   isSeller: boolean;

@@ -3,31 +3,107 @@ import { addressData } from "@constants/address-data";
 import { Address } from "types/types";
 import { useAppContext } from "@context/AppContext";
 import React, { useEffect, useState } from "react";
+import { productsData } from "@constants/products-data";
+import toast from "react-hot-toast";
+import { useAuth, useClerk } from "@clerk/nextjs";
+import { usePathname } from "next/navigation";
+usePathname
 
 const OrderSummary = () => {
 
-  const { currency, router, getCartCount, getCartAmount } = useAppContext()
+  const { currency, router, getCartCount, getCartAmount, cartItems, setCartItems } = useAppContext()
+
   const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const [userAddresses, setUserAddresses] = useState<Address[]>([]);
 
   const fetchUserAddresses = async () => {
-    setUserAddresses(addressData);
+    const stored = JSON.parse(localStorage.getItem("addresses") || "[]"); 
+    if (stored.length > 0) {
+      setUserAddresses(stored); 
+    } else {
+      setUserAddresses(addressData); 
+    }
   }
 
   const handleAddressSelect = (address: Address) => {
-    setSelectedAddress(address);
-    setIsDropdownOpen(false);
+    setSelectedAddress(address); 
+    setIsDropdownOpen(false); 
+    localStorage.setItem("selectedAddress", JSON.stringify(address))
   };
 
-  const createOrder = async () => {
+   useEffect(() => {
+    fetchUserAddresses();
 
+    // ✅ Load saved address if available
+    const savedAddress = localStorage.getItem("selectedAddress");
+    if (savedAddress) {
+      setSelectedAddress(JSON.parse(savedAddress));
+    }
+  }, []);
+
+
+
+
+  const { isSignedIn } = useAuth(); 
+  const { openSignIn } = useClerk(); 
+
+  const pathname = usePathname(); 
+
+  const createOrder = () => {
+
+  if (!selectedAddress) {
+    toast.error("Please select an address first!");
+    return;
   }
 
-  useEffect(() => {
-    fetchUserAddresses();
-  }, [])
+  if (!isSignedIn) {
+    openSignIn({
+      redirectUrl: pathname
+    }); 
+    return ;
+  } 
+
+  const orderItems = Object.entries(cartItems)
+    .map(([itemId, quantity]) => {
+      const product = productsData.find(p => p._id === itemId);
+      if (!product) return null;
+      return {
+        product,       // full product object
+        quantity,      // from cartItems
+        _id: `${itemId}-${Date.now()}` // unique ID per order item
+      };
+    })
+    .filter(Boolean);
+
+  const subtotal = orderItems.reduce((sum, item) => sum + item!.product.offerPrice * item!.quantity, 0);
+  const tax = Math.floor(subtotal * 0.02 * 100) / 100;
+  const total = subtotal + tax;
+
+  const order = {
+    _id: `order-${Date.now()}`,
+    userId: "user_demo", // or get from context/user auth
+    items: orderItems,
+    amount: total,
+    address: selectedAddress,
+    status: "Order Placed",
+    date: Date.now()
+  };
+
+  // Save order to localStorage
+  const existingOrders = JSON.parse(localStorage.getItem("orders") || "[]");
+  localStorage.setItem("orders", JSON.stringify([...existingOrders, order]));
+
+  // Clear cart after placing order
+  setCartItems({});
+
+  toast.success("Order placed successfully!");
+  router.push("/my-orders");
+};
+
+  
 
   return (
     <div className="w-full md:w-96 bg-gray-500/5 p-5">
@@ -121,7 +197,9 @@ const OrderSummary = () => {
         Place Order
       </button>
     </div>
+    
   );
 };
 
 export default OrderSummary;
+

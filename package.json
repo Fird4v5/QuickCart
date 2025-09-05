@@ -9,6 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.31.8",
+    "@stripe/react-stripe-js": "^4.0.0",
+    "@stripe/stripe-js": "^7.9.0",
     "motion": "^12.23.12",
     "next": "15.5.2",
     "react": "19.1.0",

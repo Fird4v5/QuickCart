@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { assets } from "@assets/assets";
 import Image from "next/image";
 import Footer from "@components/seller/Footer";
+import toast from "react-hot-toast";
 
 const AddProduct = () => {
 
@@ -155,7 +156,7 @@ const AddProduct = () => {
             />
           </div>
         </div>
-        <button type="submit" className="px-8 py-2.5 bg-orange-600 text-white font-medium rounded cursor-pointer">
+        <button type="submit" className="px-8 py-2.5 bg-orange-600 text-white font-medium rounded cursor-pointer" onClick={() => toast.error("Disabled in demo mode")}>
           ADD
         </button>
       </form>

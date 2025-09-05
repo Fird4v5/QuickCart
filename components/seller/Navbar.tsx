@@ -16,7 +16,7 @@ const Navbar = () => {
         onClick={() => router.push("/")}
         className='w-28 lg:w-32 cursor-pointer'
       />
-      <button className='bg-gray-600 text-white px-5 py-2 sm:px-7 sm:py-2 rounded-full text-xs sm:text-sm cursor-pointer'>
+      <button onClick={() => { router.push("/")}} className='bg-gray-600 text-white px-5 py-2 sm:px-7 sm:py-2 rounded-full text-xs sm:text-sm cursor-pointer'>
         Logout
       </button>
     </div>
