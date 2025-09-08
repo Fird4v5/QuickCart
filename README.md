@@ -18,11 +18,6 @@ Built with **Next.js**, **TypeScript**, and **Tailwind CSS**, with authenticatio
 
 ---
 
-## 🌐 Live Demo
-👉 firdavs.codes
-
----
-
 ## 📸 Preview
 
 <img width="2560" height="1600" alt="quickcart firdavs codes_(Nest Hub Max)-min" src="https://github.com/user-attachments/assets/bfd688c0-1416-4c1b-ace5-e98ae6abf50a" />
@@ -37,6 +32,11 @@ Built with **Next.js**, **TypeScript**, and **Tailwind CSS**, with authenticatio
 - [Tailwind CSS](https://tailwindcss.com/) – Utility-first CSS  
 - [Clerk](https://clerk.com/) – Authentication and user management  
 - [React Hot Toast](https://react-hot-toast.com/) – Toast notifications  
+
+---
+
+## 🌐 Live Demo
+👉 [quickcart.firdavs.codes](https://quickcart.firdavs.codes
 
 ---
 
