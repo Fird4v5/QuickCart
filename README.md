@@ -36,7 +36,7 @@ Built with **Next.js**, **TypeScript**, and **Tailwind CSS**, with authenticatio
 ---
 
 ## 🌐 Live Demo
-👉 [quickcart.firdavs.codes](https://quickcart.firdavs.codes
+👉 [quickcart.firdavs.codes](https://quickcart.firdavs.codes)
 
 ---
 
