@@ -43,10 +43,10 @@ Built with **Next.js**, **TypeScript**, and **Tailwind CSS**, with authenticatio
 ## ⚙️ Installation
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/ecommerce-store.git
-   cd ecommerce-store
-   ```
+```bash
+git clone https://github.com/yourusername/ecommerce-store.git
+cd ecommerce-store
+```
 2. Install dependencies:
 ```bash
 npm install
