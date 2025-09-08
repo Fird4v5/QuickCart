@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useAppContext } from "@context/AppContext";
 import Footer from "@components/seller/Footer";
 import Loading from "@components/Loading";
-import type { Order } from "types/order";
+import type { Order } from "types/types";
 
 const Orders = () => {
 

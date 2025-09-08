@@ -7,7 +7,7 @@ import { productsData } from "@constants/products-data";
 import toast from "react-hot-toast";
 import { useAuth, useClerk } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
-usePathname
+
 
 const OrderSummary = () => {
 
