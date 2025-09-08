@@ -20,14 +20,9 @@ const Product = () => {
     const [mainImage, setMainImage] = useState<string | null>(null);
     const [productData, setProductData] = useState<Product | null>(null);
 
-    const fetchProductData = async () => {
-        const product = products.find(product => product._id === id);
-        if (!product) return null; 
-        setProductData(product);
-    }
-
     useEffect(() => {
-        fetchProductData();
+        const product = products.find(product => product._id === id);
+        if (product) return setProductData(product);
     }, [id, products])
 
     return productData ? (<>

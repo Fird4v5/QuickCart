@@ -3,14 +3,12 @@ import Image from 'next/image';
 import NavLink from '@utils/NavLink';
 import { assets, BagIcon, BoxIcon, CartIcon, HomeIcon } from '@assets/assets';
 import { useAppContext } from '@context/AppContext';
-import { useParams } from 'next/navigation';
 import { useClerk, UserButton } from '@clerk/nextjs';
 
 
 
 const Navbar = () => {
 
-  const id = useParams(); 
 
 
   const navLinks = [
